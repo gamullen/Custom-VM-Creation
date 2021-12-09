@@ -126,7 +126,7 @@
                             },
                             "toolTip": {
                                 "virtualNetwork": "Creating a new VNet is not allowed",
-                                "subnets": ""
+                                "subnets": "Must select an existing subnet"
                             },
                             "defaultValue": {
                                 "name": "PleaseSelectAValidVNet",
@@ -136,7 +136,7 @@
                                 "minAddressPrefixSize": "/24",
                                 "validations": [
                                     {
-                                        "isValid": "[not(startsWith(steps('VirtualMachineConfig').vnet.name,'PleaseSelectAValidVNet'))]",
+                                        "isValid": "[not(startsWith(steps('VirtualMachineConfig').vnet.name,'PleaseSelectAValid'))]",
                                         "message": "Please select a valid VNet and subnet."
                                     }
                                 ]
