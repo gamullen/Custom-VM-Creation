@@ -133,7 +133,13 @@
                                 "addressPrefixSize": "/24"
                             },
                             "constraints": {
-                                "minAddressPrefixSize": "/24"
+                                "minAddressPrefixSize": "/24",
+                                "validations": [
+                                    {
+                                        "isValid": "[not(startsWith(steps('VirtualMachineConfig').vnet,'PleaseSelectAValidVNet'))]",
+                                        "message": "Please select a valid VNet and subnet."
+                                    }
+                                ]
                             },
                             "options": {
                                 "hideExisting": false
