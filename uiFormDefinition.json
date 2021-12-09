@@ -121,11 +121,11 @@
                             "name": "vnet",
                             "type": "Microsoft.Network.VirtualNetworkCombo",
                             "label": {
-                                "virtualNetwork": "Virtual network",
-                                "subnets": "Subnets"
+                                "virtualNetwork": "Select an Existing VNet",
+                                "subnets": "Select an existing subnet"
                             },
                             "toolTip": {
-                                "virtualNetwork": "",
+                                "virtualNetwork": "Creating a new VNet is not allowed",
                                 "subnets": ""
                             },
                             "defaultValue": {
@@ -136,7 +136,7 @@
                                 "minAddressPrefixSize": "/24",
                                 "validations": [
                                     {
-                                        "isValid": "[not(startsWith(steps('VirtualMachineConfig').vnet,'PleaseSelectAValidVNet'))]",
+                                        "isValid": "[not(startsWith(steps('VirtualMachineConfig').vnet.name,'PleaseSelectAValidVNet'))]",
                                         "message": "Please select a valid VNet and subnet."
                                     }
                                 ]
