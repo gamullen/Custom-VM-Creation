@@ -1,10 +1,12 @@
 # Azure Marketplace VM with uiFormDefinition
 
-[![Deploy To Azure](https://github.com/gamullen/Moore/blob/master/Moore/assets/deploytoazure.svg?sanitize=true)](https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2Fgamullen%2FMoore%2Fmaster%2FMoore%2Fazuredeploy.json%3Ftoken=ALDK3HA3QKPFTOMDEPVAFJDBVZMJQ/uiFormDefinitionUri/https%3A%2F%2Fraw.githubusercontent.com%2Fgamullen%2FMoore%2Fmaster%2FMoore%2FuiFormDefinition.json%3Ftoken=ALDK3HHBS4XXW7ZZD22E7BDBVZMHE)
+[![Deploy To Azure](https://github.com/gamullen/Moore/blob/master/Moore/assets/deploytoazure.svg?sanitize=true)](https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2Fgamullen%2FCustom-VM-Creation%2Fmaster%2Fazuredeploy.json%3F/uiFormDefinitionUri/https%3A%2F%2Fraw.githubusercontent.com%2Fgamullen%2FCustom-VM-Creation%2Fmaster%2FuiFormDefinition.json%3F)
 
 This template allows deploying a Windows VM using an existing resource for the Virtual Network.
-The VM has no Public IP Address.  
+The VM has no Public IP Address.
+
 The admin password is retrieved from Azure Key Vault.
+
 A PowerShell script is pulled from a storage account container and executed 
 upon VM creation using the CustomScriptExtension.
 The storage account access key is securely retrieved from Key Vault.
