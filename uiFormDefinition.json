@@ -125,7 +125,7 @@
                                 "subnets": "Select an existing subnet"
                             },
                             "toolTip": {
-                                "virtualNetwork": "Creating a new VNet is not allowed",
+                                "virtualNetwork": "Creating a new VNet is not allowed, attempts to do so will fail",
                                 "subnets": "Must select an existing subnet"
                             },
                             "defaultValue": {
