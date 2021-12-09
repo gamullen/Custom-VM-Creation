@@ -1,12 +1,15 @@
-# Azure Marketplace VM with CreateUIDefinition
+# Azure Marketplace VM with uiFormDefinition
 
 [![Deploy To Azure](https://github.com/gamullen/Moore/blob/master/Moore/assets/deploytoazure.svg?sanitize=true)](https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2Fgamullen%2FMoore%2Fmaster%2FMoore%2Fazuredeploy.json%3Ftoken=ALDK3HA3QKPFTOMDEPVAFJDBVZMJQ/uiFormDefinitionUri/https%3A%2F%2Fraw.githubusercontent.com%2Fgamullen%2FMoore%2Fmaster%2FMoore%2FuiFormDefinition.json%3Ftoken=ALDK3HHBS4XXW7ZZD22E7BDBVZMHE)
 
-This template allows deploying a linux VM using new or existing resources for the Virtual Network, Storage and Public IP Address.  It also allows for choosing between SSH and Password authentication.  The templates uses conditions and logic functions to remove the need for nested deployments.
+This template allows deploying a Windows VM using an existing resource for the Virtual Network.
+The VM has no Public IP Address.  
+The admin password is retrieved from Azure Key Vault.
+A PowerShell script is pulled from a storage account container and executed 
+upon VM creation using the CustomScriptExtension.
+The storage account access key is securely retrieved from Key Vault.
 
-This template contains extra parameters to allow for the existing resources use cases, which is a common scenario for Azure Applications in the Azure Marketplace.
-
-createUiDefinition.json is also included.
+uiFormDefinition.json is also included.
 
 Before submitting to Marketplace, the following steps will need to be performed
 
@@ -15,6 +18,4 @@ Before submitting to Marketplace, the following steps will need to be performed
 - Update the GUID in ```mainTemplate.json``` for Customer Usage Attribution
   - https://docs.microsoft.com/en-us/azure/marketplace/marketplace-solution-templates
 - Create a zip package of all the dependencies including the templates files, scripts, UI definition etc
-  - https://docs.microsoft.com/en-us/azure/marketplace/cloud-partner-portal/azure-applications/cpp-skus-tab#package-details-for-solution-template 
-  
-  `Tags: new, exiting, resource, vm, condition, conditional`
+  - https://docs.microsoft.com/en-us/azure/marketplace/cloud-partner-portal/azure-applications/cpp-skus-tab#package-details-for-solution-template
