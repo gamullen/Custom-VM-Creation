@@ -1,0 +1,296 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2021-09-09/uiFormDefinition.schema.json",
+    "view": {
+        "kind": "Form",
+        "properties": {
+            "title": "Custom VM Creation - HAP",
+            "isWizard": true,
+            "steps": [
+                {
+                    "name": "basics",
+                    "label": "Basics",
+                    "elements": [
+                        {
+                            "name": "resourceScope",
+                            "type": "Microsoft.Common.ResourceScope",
+                            "subscription": {
+                                "constraints": {
+                                    "validations": [
+                                        {
+                                            "isValid": "[not(contains(toLower(steps('basics').resourceScope.subscription.displayName),'test'))]",
+                                            "message": "Can't use test subscription."
+                                        }
+                                    ]
+                                },
+                                "resourceProviders": [
+                                    "Microsoft.Compute"
+                                ]
+                            },
+                            "resourceGroup": {
+                                "constraints": {
+                                    "validations": [
+                                        {
+                                            "isValid": "[not(contains(toLower(steps('basics').resourceScope.resourceGroup.name),'test'))]",
+                                            "message": "Resource group name can't contain any form of the word 'test'."
+                                        }
+                                    ]
+                                },
+                                "allowExisting": true
+                            },
+                            "location": {
+                                "label": "Region",
+                                "toolTip": "Azure region",
+                                "resourceTypes": [
+                                    "Microsoft.Compute/virtualMachines"
+                                ],
+                                "allowedValues": [
+                                    "eastus",
+                                    "westus2"
+                                ]
+                            }
+                        },
+                        {
+                            "name": "vmName",
+                            "type": "Microsoft.Common.TextBox",
+                            "label": "Virtual Machine name",
+                            "toolTip": "The name of the Virtual Machine.",
+                            "defaultValue": "gary-vm",
+                            "constraints": {
+                                "required": true,
+                                "validations": [
+                                    {
+                                        "regex": "^[a-z0-9A-Z-]{4,15}$",
+                                        "message": "The VM name must start with 'gary,' be between 4 and 15 characters long and contain letters, numbers and hyphens only."
+                                    },
+                                    {
+                                        "isValid": "[startsWith(steps('basics').vmName,'gary')]",
+                                        "message": "Must start with 'gary'."
+                                    }
+                                ]
+                            }
+                        },
+                        {
+                            "name": "adminUsername",
+                            "type": "Microsoft.Compute.UserNameTextBox",
+                            "label": "Username",
+                            "toolTip": "Admin username for the machine",
+                            "osPlatform": "Windows",
+                            "constraints": {
+                                "required": true
+                            },
+                            "visible": false
+                        },
+                        {
+                            "name": "password",
+                            "type": "Microsoft.Common.PasswordBox",
+                            "label": {
+                                "password": "Password",
+                                "confirmPassword": "Confirm password"
+                            },
+                            "toolTip": "Admin password for the virtual machine",
+                            "constraints": {
+                                "required": true,
+                                "regex": "^(?=.*[A-Z])(?=.*[.!@#$%^&*()-_=+])(?=.*[0-9])(?=.*[a-z]).{12,40}$",
+                                "validationMessage": "Password must be at least 12 characters long, and contain upper case, lower case, number and symbol"
+                            },
+                            "options": {
+                                "hideConfirmation": false
+                            },
+                            "visible": false
+                        },
+                        {
+                            "name": "scriptParameter",
+                            "type": "Microsoft.Common.TextBox",
+                            "label": "Directory to create",
+                            "toolTip": "The directory that will be created at the root.",
+                            "defaultValue": "C:\\DefaultDirName"
+                        }
+                    ],
+                    "description": "Customized description with **markdown**, see [more](https://www.microsoft.com)."
+                },
+                {
+                    "name": "VirtualMachineConfig",
+                    "label": "Virtual Machine Settings",
+                    "subLabel": {
+                        "preValidation": "Configure the virtual machine's resources and settings",
+                        "postValidation": "Done"
+                    },
+                    "bladeTitle": "Virtual Machine Settings",
+                    "elements": [
+                        {
+                            "name": "vnet",
+                            "type": "Microsoft.Network.VirtualNetworkCombo",
+                            "label": {
+                                "virtualNetwork": "Virtual network",
+                                "subnets": "Subnets"
+                            },
+                            "toolTip": {
+                                "virtualNetwork": "",
+                                "subnets": ""
+                            },
+                            "defaultValue": {
+                                "name": "PleaseSelectAValidVNet",
+                                "addressPrefixSize": "/24"
+                            },
+                            "constraints": {
+                                "minAddressPrefixSize": "/24"
+                            },
+                            "options": {
+                                "hideExisting": false
+                            },
+                            "subnets": {
+                                "subnet1": {
+                                    "label": "Subnet",
+                                    "constraints": {
+                                        "minAddressPrefixSize": "/24"
+                                    }
+                                }
+                            },
+                            "visible": true
+                        },
+                        {
+                            "name": "OSVersion",
+                            "type": "Microsoft.Common.DropDown",
+                            "label": "Windows OS Version",
+                            "defaultValue": "2019-Datacenter",
+                            "toolTip": "The OS Version for the VM Image",
+                            "constraints": {
+                                "allowedValues": [
+                                    {
+                                        "value": "2008-R2-SP1",
+                                        "label": "2008-R2-SP1"
+                                    },
+                                    {
+                                        "value": "2012-Datacenter",
+                                        "label": "2012-Datacenter"
+                                    },
+                                    {
+                                        "value": "2012-R2-Datacenter",
+                                        "label": "2012-R2-Datacenter"
+                                    },
+                                    {
+                                        "value": "2016-Nano-Server",
+                                        "label": "2016-Nano-Server"
+                                    },
+                                    {
+                                        "value": "2016-Datacenter-with-Containers",
+                                        "label": "2016-Datacenter-with-Containers"
+                                    },
+                                    {
+                                        "value": "2016-Datacenter",
+                                        "label": "2016-Datacenter"
+                                    },
+                                    {
+                                        "value": "2019-Datacenter",
+                                        "label": "2019-Datacenter"
+                                    },
+                                    {
+                                        "value": "2019-Datacenter-Core",
+                                        "label": "2019-Datacenter-Core"
+                                    },
+                                    {
+                                        "value": "2019-Datacenter-Core-smalldisk",
+                                        "label": "2019-Datacenter-Core-smalldisk"
+                                    },
+                                    {
+                                        "value": "2019-Datacenter-Core-with-Containers",
+                                        "label": "2019-Datacenter-Core-with-Containers"
+                                    },
+                                    {
+                                        "value": "2019-Datacenter-Core-with-Containers-smalldisk",
+                                        "label": "2019-Datacenter-Core-with-Containers-smalldisk"
+                                    },
+                                    {
+                                        "value": "2019-Datacenter-smalldisk",
+                                        "label": "2019-Datacenter-smalldisk"
+                                    },
+                                    {
+                                        "value": "2019-Datacenter-with-Containers",
+                                        "label": "2019-Datacenter-with-Containers"
+                                    },
+                                    {
+                                        "value": "2019-Datacenter-with-Containers-smalldisk",
+                                        "label": "2019-Datacenter-with-Containers-smalldisk"
+                                    }
+                                ],
+                                "required": true
+                            },
+                            "visible": true
+                        },
+                        {
+                            "name": "vmSize",
+                            "type": "Microsoft.Compute.SizeSelector",
+                            "label": "Virtual machine size",
+                            "toolTip": "The size of virtual machine to provision.",
+                            "recommendedSizes": [
+                                "Standard_D2_v2",
+                                "Standard_A2_v2"
+                            ],
+                            "osPlatform": "Windows",
+                            "count": "1",
+                            "scope": {
+                                "subscriptionId": "[steps('basics').resourceScope.subscription.subscriptionId]",
+                                "location": "[steps('basics').resourceScope.location.name]"
+                            }
+                        },
+                        {
+                            "name": "publicIpAddress",
+                            "type": "Microsoft.Network.PublicIpAddressCombo",
+                            "label": {
+                                "publicIpAddress": "Public IP Address for the VM",
+                                "domainNameLabel": "DNS Prefix for the public IP Address"
+                            },
+                            "toolTip": {
+                                "publicIpAddress": "Public IP Address for the VM",
+                                "domainNameLabel": "DNS Prefix for the public IP Address, must be globally unique"
+                            },
+                            "defaultValue": {
+                                "publicIpAddressName": "[concat(steps('basics').vmName,'-ip')]",
+                                "domainNameLabel": "[concat(steps('basics').vmName,'-',take(replace(guid(),'-',''),10))]"
+                            },
+                            "options": {
+                                "hideExisting": true,
+                                "hideNone": true
+                            },
+                            "constraints": {
+                                "required": {
+                                    "domainNameLabel": true
+                                }
+                            },
+                            "scope": {
+                                "subscriptionId": "[steps('basics').resourceScope.subscription.subscriptionId]",
+                                "resourceGroupName": "[steps('basics').resourceScope.resourceGroup.name]",
+                                "location": "[steps('basics').resourceScope.location.name]"
+                            },
+                            "visible": false
+                        }
+                    ]
+                }
+            ]
+        },
+        "outputs": {
+            "parameters": {
+                "location": "[steps('basics').resourceScope.location.name]",
+                "vmName": "[steps('basics').vmName]",
+                "adminUsername": "[steps('basics').adminUsername]",
+                "adminPassword": "[steps('basics').password]",
+                "scriptParameter": "[steps('basics').scriptParameter]",
+                "virtualNetworkName": "[steps('VirtualMachineConfig').vnet.name]",
+                "virtualNetworkNewOrExisting": "[steps('VirtualMachineConfig').vnet.newOrExisting]",
+                "virtualNetworkAddressPrefix": "[first(steps('VirtualMachineConfig').vnet.addressPrefixes)]",
+                "virtualNetworkResourceGroup": "[steps('VirtualMachineConfig').vnet.resourceGroup]",
+                "subnetName": "[steps('VirtualMachineConfig').vnet.subnets.subnet1.name]",
+                "subnetAddressPrefix": "[steps('VirtualMachineConfig').vnet.subnets.subnet1.addressPrefix]",
+                "vmSize": "[steps('VirtualMachineConfig').vmSize]",
+                "OSVersion": "[steps('VirtualMachineConfig').OSVersion]",
+                "publicIpName": "[steps('VirtualMachineConfig').publicIpAddress.name]",
+                "dnsLabelPrefix": "[steps('VirtualMachineConfig').publicIpAddress.domainNameLabel]",
+                "publicIPAllocationMethod": "[steps('VirtualMachineConfig').publicIpAddress.publicIPAllocationMethod]",
+                "publicIpSku": "[steps('VirtualMachineConfig').publicIpAddress.sku]"
+            },
+            "kind": "ResourceGroup",
+            "location": "[steps('basics').resourceScope.location.name]",
+            "resourceGroupId": "[steps('basics').resourceScope.resourceGroup.id]"
+        }
+    }
+}
