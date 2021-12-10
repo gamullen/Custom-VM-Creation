@@ -288,11 +288,7 @@
                 "subnetName": "[steps('VirtualMachineConfig').vnet.subnets.subnet1.name]",
                 "subnetAddressPrefix": "[steps('VirtualMachineConfig').vnet.subnets.subnet1.addressPrefix]",
                 "vmSize": "[steps('VirtualMachineConfig').vmSize]",
-                "OSVersion": "[steps('VirtualMachineConfig').OSVersion]",
-                "publicIpName": "[steps('VirtualMachineConfig').publicIpAddress.name]",
-                "dnsLabelPrefix": "[steps('VirtualMachineConfig').publicIpAddress.domainNameLabel]",
-                "publicIPAllocationMethod": "[steps('VirtualMachineConfig').publicIpAddress.publicIPAllocationMethod]",
-                "publicIpSku": "[steps('VirtualMachineConfig').publicIpAddress.sku]"
+                "OSVersion": "[steps('VirtualMachineConfig').OSVersion]"
             },
             "kind": "ResourceGroup",
             "location": "[steps('basics').resourceScope.location.name]",
