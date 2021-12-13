@@ -1,5 +1,5 @@
 {
-    "$schema": "https://schema.management.azure.com/schemas/2021-09-09/uiFormDefinition.schema.json",
+    "$schema": "https://schema.management.azure.com/schemas/2021-09-09/uiFormDefinition.schema.json#",
     "view": {
         "kind": "Form",
         "properties": {
@@ -133,13 +133,7 @@
                                 "addressPrefixSize": "/24"
                             },
                             "constraints": {
-                                "minAddressPrefixSize": "/24",
-                                "validations": [
-                                    {
-                                        "isValid": "[not(startsWith(steps('VirtualMachineConfig').vnet.name,'PleaseSelectAValid'))]",
-                                        "message": "Please select a valid VNet and subnet."
-                                    }
-                                ]
+                                "minAddressPrefixSize": "/24"
                             },
                             "options": {
                                 "hideExisting": false
