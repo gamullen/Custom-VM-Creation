@@ -4,7 +4,6 @@
         "kind": "Form",
         "properties": {
             "title": "Custom VM Creation - HAP",
-            "isWizard": true,
             "steps": [
                 {
                     "name": "basics",
@@ -25,17 +24,6 @@
                                 "resourceProviders": [
                                     "Microsoft.Compute"
                                 ]
-                            },
-                            "resourceGroup": {
-                                "constraints": {
-                                    "validations": [
-                                        {
-                                            "isValid": "[not(contains(toLower(steps('basics').resourceScope.resourceGroup.name),'test'))]",
-                                            "message": "Resource group name can't contain any form of the word 'test'."
-                                        }
-                                    ]
-                                },
-                                "allowExisting": true
                             },
                             "location": {
                                 "label": "Region",
@@ -105,8 +93,7 @@
                             "toolTip": "The directory that will be created at the root.",
                             "defaultValue": "C:\\DefaultDirName"
                         }
-                    ],
-                    "description": "Customized description with **markdown**, see [more](https://www.microsoft.com)."
+                    ]
                 },
                 {
                     "name": "VirtualMachineConfig",
