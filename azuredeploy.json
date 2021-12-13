@@ -222,23 +222,11 @@
             }
           },
           "variables": {
-            "storageAccountName": "[concat('bootdiags', uniquestring(resourceGroup().id))]",
             "nicName": "[concat(parameters('vmName'), '-NIC')]",
             "vnetId": "[resourceId(parameters('virtualNetworkResourceGroup'),'Microsoft.Network/virtualNetworks',parameters('virtualNetworkName'))]",
             "subnetId": "[concat(variables('vnetId'),'/subnets/',parameters('subnetName'))]"
           },
           "resources": [
-            {
-              "type": "Microsoft.Storage/storageAccounts",
-              "apiVersion": "2019-06-01",
-              "name": "[variables('storageAccountName')]",
-              "location": "[parameters('location')]",
-              "sku": {
-                "name": "Standard_LRS"
-              },
-              "kind": "Storage",
-              "properties": {}
-            },
             {
               "type": "Microsoft.Network/networkInterfaces",
               "apiVersion": "2020-06-01",
@@ -265,7 +253,6 @@
               "name": "[parameters('vmName')]",
               "location": "[parameters('location')]",
               "dependsOn": [
-                "[resourceId('Microsoft.Storage/storageAccounts', variables('storageAccountName'))]",
                 "[resourceId('Microsoft.Network/networkInterfaces', variables('nicName'))]"
               ],
               "properties": {
