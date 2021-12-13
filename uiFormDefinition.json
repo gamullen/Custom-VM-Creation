@@ -1,5 +1,5 @@
 {
-    "$schema": "https://schema.management.azure.com/schemas/2021-09-09/uiFormDefinition.schema.json#",
+    "$schema": "http://schema.management.azure.com/schemas/2021-09-09/uiFormDefinition.schema.json#",
     "view": {
         "kind": "Form",
         "properties": {
@@ -98,11 +98,6 @@
                 {
                     "name": "VirtualMachineConfig",
                     "label": "Virtual Machine Settings",
-                    "subLabel": {
-                        "preValidation": "Configure the virtual machine's resources and settings",
-                        "postValidation": "Done"
-                    },
-                    "bladeTitle": "Virtual Machine Settings",
                     "elements": [
                         {
                             "name": "vnet",
@@ -110,6 +105,11 @@
                             "label": {
                                 "virtualNetwork": "Select an Existing VNet",
                                 "subnets": "Select an existing subnet"
+                            },
+                            "scope": {
+                                "subscriptionId": "[steps('basics').resourceScope.subscription.subscriptionId]",
+                                "resourceGroupName": "[steps('basics').resourceScope.resourceGroup.resourceGroupId]",
+                                "location": "[steps('basics').resourceScope.location.name]"
                             },
                             "toolTip": {
                                 "virtualNetwork": "Creating a new VNet is not allowed, attempts to do so will fail",
