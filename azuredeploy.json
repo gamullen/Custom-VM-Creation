@@ -312,13 +312,13 @@
                 "type": "CustomScriptExtension",
                 "protectedSettings": {
                   "fileUris": [ "[parameters('scriptFile')]" ],
-                  "commandToExecute": "[concat('powershell -ExecutionPolicy Unrestricted -file ', parameters('scriptName'), ' ', parameters('scriptParameter'))]",
                   "storageAccountName": "customscriptsgary",
                   "storageAccountKey": "[parameters('storageAccountKey')]"
                 },
                 "typeHandlerVersion": "1.7",
                 "autoUpgradeMinorVersion": true,
                 "settings": {
+                                    "commandToExecute": "[concat('powershell -ExecutionPolicy Unrestricted -file ', parameters('scriptName'), ' ', parameters('scriptParameter'))]"
                 }
               }
             }
