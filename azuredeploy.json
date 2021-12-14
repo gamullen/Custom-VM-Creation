@@ -311,7 +311,7 @@
                 "publisher": "Microsoft.Compute",
                 "type": "CustomScriptExtension",
                 "protectedSettings": {
-                  "fileUris": [ "[parameters('scriptFile')]" ],
+                  "fileUris": [ "[parameters('scriptFile')]"],
                   "storageAccountName": "customscriptsgary",
                   "storageAccountKey": "[parameters('storageAccountKey')]"
                 },
