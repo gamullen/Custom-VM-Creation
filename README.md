@@ -1,6 +1,6 @@
 # Azure Marketplace VM with uiFormDefinition
 
-[![Deploy To Azure](https://github.com/gamullen/Custom-VM-Creation/blob/master/deploytoazure.svg?sanitize=true)](https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fgithubproxy.azurewebsites.net%2Fapi%2FHttpTrigger%3Fgithuburi%3Dhttps%3A%2F%2Fraw.githubusercontent.com%2Fgamullen%2FCustom-VM-Creation%2Fmaster%2Fazuredeploy.json%3F/uiFormDefinitionUri/https%3A%2F%2Fgithubproxy.azurewebsites.net%2Fapi%2FHttpTrigger%3Fgithuburi%3Dhttps%3A%2F%2Fraw.githubusercontent.com%2Fgamullen%2FCustom-VM-Creation%2Fmaster%2FuiFormDefinition.json)
+[![Deploy To Azure](https://github.com/gamullen/Custom-VM-Creation/blob/master/deploytoazure.svg?sanitize=true)](https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fgithubproxy.azurewebsites.net%2Fapi%2FHttpTrigger%3FgitHubURL%3Dhttps%3A%2F%2Fraw.githubusercontent.com%2Fgamullen%2FCustom-VM-Creation%2Fmaster%2Fazuredeploy.json%3F/uiFormDefinitionUri/https%3A%2F%2Fgithubproxy.azurewebsites.net%2Fapi%2FHttpTrigger%3FgitHubURL%3Dhttps%3A%2F%2Fraw.githubusercontent.com%2Fgamullen%2FCustom-VM-Creation%2Fmaster%2FuiFormDefinition.json)
 
 This template allows deploying a Windows VM using an existing resource for the Virtual Network.
 The VM has no Public IP Address.
